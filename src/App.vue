@@ -5,7 +5,5 @@
 </template>
 
 <style lang="less">
-#app {
-    height: 100%;
-}
+    @import 'common/common.less';
 </style>
