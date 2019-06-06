@@ -15,6 +15,10 @@ body,
     height: 100%;
 }
 
+#app {
+    padding: 20px;
+}
+
 *,
 *:before,
 *:after {
@@ -23,11 +27,21 @@ body,
 }
 
 body {
-    overflow: hidden;
+    //overflow: hidden;
 }
 
 ul,
 li {
     padding-left: 0;
     list-style: none;
+}
+
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    content: "";
+}
+
+.clearfix:after {
+    clear: both
 }
