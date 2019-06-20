@@ -56,7 +56,6 @@ function mockJsFile(uri, req, res) {
 module.exports = function (req, res, next) {
     let base = mockRoot + req.url.split('?')[0];
     let files = ['.js', '.json', '/index.js', '/index.json', ''];
-    // base = base.replace('//crm', ''); // 防止系统路径里面有 '/crm'，replace会替换第一个导致mock路径不对
     let i;
     for (i = 0; i < files.length; i++) {
         let uri = base + files[i];

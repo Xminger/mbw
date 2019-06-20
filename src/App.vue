@@ -19,7 +19,7 @@
 
 <script lang="ts">
     import {Component, Vue} from "vue-property-decorator";
-    import foot from '@/components/foot.vue';
+    import foot from './components/foot.vue';
 
     @Component({
         components: {
@@ -28,5 +28,6 @@
 
     })
 
-    export default class Foot extends Vue {}
+    export default class Foot extends Vue {
+    }
 </script>
