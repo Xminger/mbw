@@ -24,6 +24,11 @@ export default new Router({
             path: '/favorite',
             name: '收藏',
             component: () => import('./views/favorite.vue')
+        },
+        {
+            path: '/detail/:id',
+            name: '详情',
+            component: () => import('./views/detail.vue')
         }
 
     ]
