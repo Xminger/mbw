@@ -3,6 +3,7 @@
         <div class="home-list">
             <card :cardList="cardList"></card>
         </div>
+        <foot></foot>
     </div>
 </template>
 
@@ -12,14 +13,18 @@
 
 <script lang="ts">
     import {Component, Vue} from "vue-property-decorator";
-    import card from '@/components/homeCard.vue';
+    import card from '@/components/card.vue';
+    import foot from '@/components/foot.vue';
+    import {login} from '@/common/api';
 
     @Component({
         components: {
-            card
+            card,
+            foot
         }
 
     })
+
     export default class Home extends Vue {
         private cardList!: Array<any>;
 
@@ -67,6 +72,22 @@
                     }
                 ]
             }
+        }
+
+        mounted(): void {
+            this.initData()
+        }
+
+        initData() {
+            login({a: 1, b: 2})
+                .then(res => {
+                    console.log('res1');
+                    console.log(res);
+                })
+                .catch(error => {
+                    console.log('error1');
+                    console.log(error);
+                })
         }
     }
 </script>

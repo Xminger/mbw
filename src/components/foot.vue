@@ -1,12 +1,12 @@
 <template>
     <div class="foot">
         <el-row>
-            <el-col v-for="item in menuList"
+            <el-col v-for="(item, index) in menuList"
                     class="menuItem"
-                    :key="item.id"
-                    :span="item.span">
-                <div @click="jumpUrl(item.url)">
-                    <i :class="item.iconClass"></i>
+                    :key="index"
+                    :span="24/menuList.length">
+                <div @click="clickEvent(item)" :style="item.style || ''">
+                    <i v-if="item.iconClass" :class="item.iconClass"></i>
                     {{item.text}}
                 </div>
             </el-col>
@@ -19,49 +19,52 @@
 </style>
 
 <script lang="ts">
-    import {Vue, Component} from 'vue-property-decorator';
+    import {Vue, Component, Prop} from 'vue-property-decorator';
 
     @Component
     export default class foot extends Vue {
-        private menuList!: Array<any>;
 
-        private data () {
-            return {
-                menuList: [
+        @Prop({
+            type: Array,
+            default: () => {
+                return [
                     {
-                        id: 1,
-                        span: 6,
                         iconClass: 'el-icon-s-home',
                         text: '首页',
-                        url: '/'
+                        url: '/',
+                        isJump: true
                     },
                     {
-                        id: 2,
-                        span: 6,
                         iconClass: 'el-icon-s-grid',
                         text: '分类',
-                        url: '/classification'
+                        url: '/classification',
+                        isJump: true
                     },
                     {
-                        id: 3,
-                        span: 6,
                         iconClass: 'el-icon-user-solid',
                         text: '我的',
-                        url: '/my'
+                        url: '/my',
+                        isJump: true
                     },
                     {
-                        id: 4,
-                        span: 6,
                         iconClass: 'el-icon-star-on',
                         text: '收藏',
-                        url: '/favorite'
+                        url: '/favorite',
+                        isJump: true
                     }
-                ]
+                ];
             }
-        };
+        })
+        menuList!: Array<any>
 
-        jumpUrl(url:any) {
-            this.$router.push(url);
+
+        clickEvent(item: any) {
+            if (item.isJump) {
+                this.$router.push(item.url);
+            }
+            else {
+                this.$emit('clickEvent', item);
+            }
         }
     }
 </script>

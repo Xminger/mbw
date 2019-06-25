@@ -1,15 +1,23 @@
 .foot {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    background: #fefefe;
+    border-top: 1px solid #f9f9f9;
     .menuItem {
         text-align: center;
         & > div {
+            font-size: 14px;
+            padding-bottom: 1vw;
             & > i {
-                font-size: 7vw;
+                font-size: 5vw;
                 display: block;
-                padding: 1.5vw 0;
+                padding: 1vw 0;
             }
             &:hover {
                 cursor: pointer;
-                color: #fff;
             }
         }
     }
