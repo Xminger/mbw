@@ -1,11 +1,10 @@
-/**
- * @file 本地数据模拟模块
+/* @file 本地数据模拟模块
  * @author
  */
 
 let fs = require('fs');
 let path = require('path');
-let mockRoot = path.resolve(__dirname, '../mock/') + '/';
+let mockRoot = path.resolve(__dirname, './mock/') + '/';
 
 /**
  * 解析URL参数
@@ -32,7 +31,7 @@ function parseParam(url) {
 }
 
 function mockJsFile(uri, req, res) {
-    console.log('本地模拟数据:', uri.replace(mockRoot, ''));
+    console.log('本地模拟数据:', uri.replace('mock//', 'mock/'));
 
     let mock = require(uri);
     if (typeof mock === 'function') {
@@ -65,7 +64,7 @@ module.exports = function (req, res, next) {
                 mockJsFile(uri, req, res);
             }
             else {
-                console.log('本地模拟数据:', uri.replace(mockRoot, ''));
+                console.log('本地模拟数据:', uri.replace('mock//', 'mock/'));
                 res.send(fs.readFileSync(uri, {
                     encoding: 'utf8'
                 }));

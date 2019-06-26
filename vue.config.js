@@ -20,8 +20,8 @@ module.exports = {
         https: false,
         open: false,
         // proxy: {
-        //     '/crm/web': {
-        //         target: 'http://10.100.73.138:8081', // RD联调的时候 用这个
+        //     '/': {
+        //         target: ' http://127.0.0.1:8001',
         //         ws: false,
         //         changeOrigin: true
         //     }
