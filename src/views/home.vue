@@ -3,7 +3,7 @@
         <div class="home-list">
             <card :cardList="cardList"></card>
         </div>
-        <foot></foot>
+<!--        <foot></foot>-->
     </div>
 </template>
 
@@ -25,54 +25,22 @@
     })
 
     export default class Home extends Vue {
-        cardList: Array<any> = [
-            {
-                id: 1,
-                imgSrc:
-                    'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
-                time: new Date().getFullYear()
-                    + '-'
-                    + (new Date().getMonth() + 1)
-                    + '-'
-                    + new Date().getDay(),
-                title: '标题标题标题标题标题标题标题标题标题标题标题标题',
-                money: 123,
-                url: '/detail/1'
-            },
-            {
-                id: 2,
-                imgSrc:
-                    'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
-                time: new Date().getFullYear()
-                    + '-'
-                    + (new Date().getMonth() + 1)
-                    + '-'
-                    + new Date().getDay(),
-                title: '标题标题标题标题标题标题标题标题标题标题标题标题',
-                money: 123,
-                url: '/detail/2'
-            },
-            {
-                id: 3,
-                imgSrc:
-                    'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
-                time: new Date().getFullYear()
-                    + '-'
-                    + (new Date().getMonth() + 1)
-                    + '-'
-                    + new Date().getDay(),
-                title: '标题标题标题标题标题标题标题标题标题标题标题标题',
-                money: 123,
-                url: '/detail/3'
-            }
-        ];
+        cardList: Array<any> = [];
 
         mounted(): void {
             this.initData()
         }
 
         initData() {
-
+            // 列表
+            this.$axios('/homeList')
+                .then(res => {
+                    console.log(res);
+                    this.cardList = res.data;
+                })
+                .catch(error => {
+                    this.$alert(error.msg || '系统出小差了，请稍后重试');
+                })
         }
     }
 </script>

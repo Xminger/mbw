@@ -25,7 +25,7 @@ asdfasdf
         <div class="detail-recommend">
             推荐的内容
         </div>
-        <foot :menuList="menuList" @clickEvent="menuClick"></foot>
+<!--        <foot :menuList="menuList" @clickEvent="menuClick"></foot>-->
     </div>
 </template>
 
@@ -80,6 +80,16 @@ asdfasdf
             }
         }
 
+        mounted(): void {
+            this.initData()
+        }
+
+        initData() {
+            this.$axios.post('/')
+            .then()
+            .catch();
+        }
+
         // 菜单点击
         menuClick(item: any) {
             if (item.isFavorite) {
@@ -94,5 +104,6 @@ asdfasdf
         scrollClick(item: any) {
             alert('点击了焦点图：' + JSON.stringify(item));
         }
+
     }
 </script>
